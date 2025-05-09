@@ -9,10 +9,22 @@
     display: flex;
     flex-wrap: wrap;
     border: 2px solid #000;
+    background-color: green;
 }
 
 .grid div {
     width: 10%;
     height: 10%;
     box-sizing: border-box;
+}
+
+
+.snake{
+    background-color: black;
+}
+
+
+
+.apple{
+    background-color: red;
 }

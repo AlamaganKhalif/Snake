@@ -46,6 +46,7 @@ function move(){
         statusDisplay.textContent = "Game Over";
         return;
     }
+    cells[newHead].classList.add("snake")
 }
 
 const tail = snake.pop()
@@ -57,5 +58,12 @@ snake.unshift(newHead);
 if (newHead === appleIndex) {
     cells[appleIndex].classList.remove("apple")
     snake.push(tail)
+    score++
     score.scoreDisplay.textContent = score
+    generateApple();
+    if (snake.length === cellblock) {
+        statusDisplay.textContent = "You Win";
+        clearInterval(gameInterval)
+        return 
+    }
 }
