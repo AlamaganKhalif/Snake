@@ -5,6 +5,7 @@ const cellblock = width * width
 const cells = []
 let score = 0
 let snake = [0]
+let direction = 1;
 
 
 // fuction to create grid 
@@ -48,3 +49,13 @@ function move(){
 }
 
 const tail = snake.pop()
+cells[tali].classList.remove("snake");
+
+const newHead = head + direction
+snake.unshift(newHead);
+
+if (newHead === appleIndex) {
+    cells[appleIndex].classList.remove("apple")
+    snake.push(tail)
+    score.scoreDisplay.textContent = score
+}
