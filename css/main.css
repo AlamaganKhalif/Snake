@@ -3,21 +3,39 @@
     margin: 0;
 }
 
+
+
+body{
+   display: flex;
+   justify-content: center;
+   padding: 200px;
+
+}
+
 .grid{
-    width: 700px;
-    height: 700px;
+    width: 400px;
     display: flex;
     flex-wrap: wrap;
-    border: 2px solid #000;
-    background-color: green;
+    margin: 20px 0;
+}
+
+.container{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    
 }
 
 .grid div {
-    width: 10%;
-    height: 10%;
+    width: 40px;
+    height: 40px;
     border: none;
+    border: 1px solid #ccc;
     box-sizing: border-box;
     color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -29,4 +47,8 @@
     background-color: red;
 }
 
+.start{
+    padding: 10px , 40px;
+    font-size: 17px;
+}
 

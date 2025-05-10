@@ -23,11 +23,13 @@ function createGrid (){
 
 
 function StartGame() {
-snake.forEach(index => cells[index].classList.remove("snake"))
+snake.forEach(index => cells[index].classList.remove("snake", "apple"))
 cells[appleIndex].classList.remove("apple")
 clearInterval(gameInterval)
 
-
+snake = [0]
+direction = 1
+score = 0;
 
 userScore.textContent = score
 statusDisplay.textContent = "";
