@@ -37,7 +37,7 @@ statusDisplay.textContent = "";
 snake.forEach(index => cells[index].classList.add("snake"))
 
 generateApple()
-gameInterval = setInterval(move, 200)
+gameInterval = setInterval(move, 150)
 
 }
 
@@ -95,7 +95,6 @@ function control(move) {
     else if (move.key === "ArrowDown" && direction !== -width) direction =  width
 
 }
-
 document.addEventListener("keydown", control)
 createGrid()
 StartGame()
