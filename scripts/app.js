@@ -6,6 +6,7 @@ const cellblock = width * width
 const cells = []
 let score = 0
 let gameStarted = false
+let isPasused = false
 let snake = [0]
 let direction = 1;
 let appleIndex = 0
@@ -16,7 +17,7 @@ let gameInterval;
 function createGrid (){
     for (let i = 0; i < cellblock; i++ ) {
         const cell = document.createElement("div");
-        cell.textContent = i;
+        // cell.textContent = i;
       cells.push(cell);
       grid.appendChild(cell)
     }
@@ -29,15 +30,16 @@ cells[appleIndex].classList.remove("apple")
 clearInterval(gameInterval)
 
 snake = [0]
+bestScore = []
 direction = 1
 score = 0;
 
 userScore.textContent = score
 statusDisplay.textContent = "";
 
+generateApple()
 snake.forEach(index => cells[index].classList.add("snake"))
 
-generateApple()
 gameInterval = setInterval(move, 150)
 
 }
@@ -56,7 +58,6 @@ function move(){
         clearInterval(gameInterval)
         return
     }    
-
    const tail = snake.pop()
    cells[tail].classList.remove("snake")
 
@@ -96,7 +97,7 @@ function control(move) {
     else if (move.key === "ArrowDown" && direction !== -width) direction =  width
 
 }
-
+console.log("move")
 
 document.getElementById("startBtn").addEventListener("click", startGame )
 
