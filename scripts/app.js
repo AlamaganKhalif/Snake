@@ -5,6 +5,7 @@ const width = 10
 const cellblock = width * width 
 const cells = []
 let score = 0
+let gameStarted = false
 let snake = [0]
 let direction = 1;
 let appleIndex = 0
@@ -22,7 +23,7 @@ function createGrid (){
 }
 
 
-function StartGame() {
+function startGame() {
 snake.forEach(index => cells[index].classList.remove("snake", "apple"))
 cells[appleIndex].classList.remove("apple")
 clearInterval(gameInterval)
@@ -81,7 +82,7 @@ function move(){
 
 function generateApple(){
     do {
-        appleIndex = Math.floor(Math.random() * cellsblock);
+        appleIndex = Math.floor(Math.random() * cellblock);
     } while (cells[appleIndex].classList.contains("snake"))
         cells[appleIndex].classList.add("apple")
 }
@@ -95,6 +96,10 @@ function control(move) {
     else if (move.key === "ArrowDown" && direction !== -width) direction =  width
 
 }
+
+
+document.getElementById("startBtn").addEventListener("click", startGame )
+
 document.addEventListener("keydown", control)
 createGrid()
-StartGame()
+startGame()
