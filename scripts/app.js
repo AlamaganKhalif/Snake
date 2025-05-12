@@ -1,13 +1,16 @@
 const grid = document.querySelector(".grid")
 const userScore = document.querySelector(".score")
+const bestScoreDisplay = document.querySelector(".best-score")
 const statusDisplay = document.querySelector(".status")
+const countdownDisplay = document.querySelector(".countdown")
+
 const width = 10
 const cellblock = width * width 
 const cells = []
 let score = 0
 let bestScore = localStorage.getItem("best-score") || 0
 let gameStarted = false
-let isPasused = false
+let isPaused = false
 let snake = [0]
 let direction = 1;
 let appleIndex = 0
@@ -25,25 +28,45 @@ function createGrid (){
 }
 
 
+function countdown(callback) {
+    let count = 3
+    countdownDisplay.textContent = count
+    
+    const interval = setInterval(() => {
+    count--
+    if (count > 0) {
+        countdownDisplay.textContent = count
+    } else {
+        clearInterval(interval)
+        countdownDisplay.textContent = ""
+        callback()
+    }
+    }, 1000)
+}
+
+
+
+
+
 function startGame() {
 snake.forEach(index => cells[index].classList.remove("snake", "apple"))
 cells[appleIndex].classList.remove("apple")
 clearInterval(gameInterval)
 
 snake = [0]
-bestScore = []
 direction = 1
 score = 0;
+isPaused = false
 
 userScore.textContent = score
-document.querySelector(".best-score").textContent = bestScore
+bestScoreDisplay.textContent = bestScore
 statusDisplay.textContent = "";
 
 generateApple()
 snake.forEach(index => cells[index].classList.add("snake"))
 
 gameInterval = setInterval(move, 150)
-
+gameStarted = true
 }
 
 
@@ -58,10 +81,12 @@ function move(){
     ) {
         statusDisplay.textContent = "Game Over"
         clearInterval(gameInterval)
+        gameStarted = false
+
         if (score > bestScore) {
             bestScore = score
-            localStorage.setItem("bestScore", bestScore)
-            document.querySelector(".best-score").textContent = bestScore
+            localStorage.setItem("best-score", bestScore)
+            bestScoreDisplay.textContent = bestScore
         }
         return
     }    
@@ -78,6 +103,8 @@ function move(){
     score++
     userScore.textContent = score
     generateApple()
+   
+   
     if (snake.length === cellblock) {
         statusDisplay.textContent = "You Win"
         clearInterval(gameInterval)
@@ -97,28 +124,42 @@ function generateApple(){
 
 
 
-function control(move) {
-    if (move.key === " ") {
-        if (isPasused){
+function control(listen) {
+    if (!gameStarted) 
+        return
+    if (listen.key === " ") {
+        if (isPaused){
             gameInterval = setInterval(move, 150)
             statusDisplay.textContent = ""
         } else{
             clearInterval(gameInterval)
             statusDisplay.textContent = "paused"
         }
-        isPasused = !isPasused
+        isPaused = !isPaused
         return;
     }
-    if (!isPasused){
-    if (move.key === "ArrowRight" && direction !== -1) direction = 1;
-    else if (move.key === "ArrowUp" && direction !== width) direction = - width
-    else if (move.key === "ArrowLeft" && direction !== 1) direction = - 1
-    else if (move.key === "ArrowDown" && direction !== -width) direction =  width
+    if (!isPaused){
+    if (listen.key === "ArrowRight" && direction !== -1) direction = 1;
+    else if (listen.key === "ArrowUp" && direction !== width) direction = - width
+    else if (listen.key === "ArrowLeft" && direction !== 1) direction = - 1
+    else if (listen.key === "ArrowDown" && direction !== -width) direction =  width
     }
 }
 
-document.getElementById("startBtn").addEventListener("click", startGame )
+document.getElementById("startBtn").addEventListener("click", () => {
+    if (!gameStarted) {
+        countdown(startGame)
+    }
+} )
+
+
+grid.addEventListener("click", () => {
+    if(!gameStarted) {
+        countdown(startGame)
+    }
+})
 
 document.addEventListener("keydown", control)
+
 createGrid()
-startGame()
+bestScoreDisplay.textContent = bestScore

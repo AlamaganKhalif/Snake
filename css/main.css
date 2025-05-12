@@ -11,7 +11,13 @@ body{
    align-items: center;
    min-height: 100vh;
    padding: 20px;
-   background-color: #9EEB47;
+}
+
+
+.container{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-start;
 }
 
 .grid{
@@ -22,16 +28,10 @@ body{
     margin: 20px 0;
     gap: 0;
      border: 1px solid black; 
-   background-color: #9EEB47;
     }
     
-    .container{
-        display: flex;
-        flex-direction: column-reverse;
-        align-items: flex-start;
-    }
     
-    .grid div {
+.grid div {
         width: 10%;
         height: 10%;
         box-sizing: border-box;
@@ -55,7 +55,14 @@ button{
     cursor: pointer;
 }
 
-h1{
-    display: flex;
+button{
+    font-size: 16px;
+    padding: 10px, 15px;
+    cursor: pointer;
+    margin: 10px;
+}
 
+.status, .countdown {
+    font-size: 16px;
+    margin: 10px 0;
 }
