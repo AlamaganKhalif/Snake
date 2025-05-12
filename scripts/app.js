@@ -5,6 +5,7 @@ const width = 10
 const cellblock = width * width 
 const cells = []
 let score = 0
+let bestScore = localStorage.getItem("best-score") || 0
 let gameStarted = false
 let isPasused = false
 let snake = [0]
@@ -35,6 +36,7 @@ direction = 1
 score = 0;
 
 userScore.textContent = score
+document.querySelector(".best-score").textContent = bestScore
 statusDisplay.textContent = "";
 
 generateApple()
@@ -56,6 +58,11 @@ function move(){
     ) {
         statusDisplay.textContent = "Game Over"
         clearInterval(gameInterval)
+        if (score > bestScore) {
+            bestScore = score
+            localStorage.setItem("bestScore", bestScore)
+            document.querySelector(".best-score").textContent = bestScore
+        }
         return
     }    
    const tail = snake.pop()
@@ -91,13 +98,24 @@ function generateApple(){
 
 
 function control(move) {
+    if (move.key === " ") {
+        if (isPasused){
+            gameInterval = setInterval(move, 150)
+            statusDisplay.textContent = ""
+        } else{
+            clearInterval(gameInterval)
+            statusDisplay.textContent = "paused"
+        }
+        isPasused = !isPasused
+        return;
+    }
+    if (!isPasused){
     if (move.key === "ArrowRight" && direction !== -1) direction = 1;
     else if (move.key === "ArrowUp" && direction !== width) direction = - width
     else if (move.key === "ArrowLeft" && direction !== 1) direction = - 1
     else if (move.key === "ArrowDown" && direction !== -width) direction =  width
-
+    }
 }
-console.log("move")
 
 document.getElementById("startBtn").addEventListener("click", startGame )
 
