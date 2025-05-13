@@ -15,7 +15,7 @@ let score = 0;
 let bestScore = localStorage.getItem("best-score") || 0;
 let gameStarted = false;
 let isPaused = false;
-let snake = [0];
+let snake = [];
 let direction = 1;
 let nextDirection = direction;
 let appleIndex = 0;
@@ -30,8 +30,6 @@ function createGrid() {
     grid.appendChild(cell);
   }
 }
-
-
 
 function countdown(callback) {
   let count = 3;
@@ -49,18 +47,14 @@ function countdown(callback) {
   }, 1000);
 }
 
-
-
 function startGame() {
-  snake.forEach(i => cells[i].classList.remove("snake"));
-  cells[appleIndex]?.classList.remove("apple");
-  clearInterval(gameInterval);
-
-  snake = [0];
-  direction = 1;
-  score = 0;
-  isPaused = false;
-  gameStarted = true;
+  clearGrid();
+  snake = [0]; // Initialize snake at the starting position
+  direction = 1; // Initial direction
+  nextDirection = direction; // Set next direction to initial direction
+  score = 0; // Reset score
+  isPaused = false; // Ensure game is not paused
+  gameStarted = true; // Mark game as started
 
   gameOverMessage.style.display = "none";
   userScore.textContent = `Score: ${score}`;
@@ -69,7 +63,10 @@ function startGame() {
   generateApple();
   snake.forEach(i => cells[i].classList.add("snake"));
 
-  gameInterval = setInterval(move, 100);
+  // Start the game loop after a brief delay
+  setTimeout(() => {
+    gameInterval = setInterval(move, 100); // Start moving the snake
+  }, 100);
 }
 
 function move() {
@@ -115,7 +112,7 @@ function gameOver() {
   gameOverMessage.textContent = "Game Over";
   gameOverMessage.style.display = "block";
   clearInterval(gameInterval);
-  gameStarted = false;
+  gameStarted = false; // Mark game as not started
 
   if (score > bestScore) {
     bestScore = score;
@@ -131,8 +128,15 @@ function generateApple() {
   cells[appleIndex].classList.add("apple");
 }
 
+function clearGrid() {
+  cells.forEach(cell => {
+    cell.classList.remove("snake");
+    cell.classList.remove("apple");
+  });
+}
+
 function control(e) {
-  if (!gameStarted) return;
+  if (!gameStarted) return; // Prevent control when the game is not started
 
   keyState[e.key] = e.type === 'keydown';
 
@@ -166,22 +170,16 @@ startButton.addEventListener("click", () => {
   }
 });
 
-
 grid.addEventListener("click", () => {
   if (!gameStarted) {
     titleOverGrid.style.display = "none";
     startButton.style.display = "none";
     countdown(startGame);
   }
-})
-
-
-
+});
 
 createGrid();
 bestScoreDisplay.textContent = `Best Score: ${bestScore}`;
-
-
 
 
 

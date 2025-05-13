@@ -26,28 +26,31 @@ It has a pause button for when you want time off the field, or your web connecti
 So as to comprehend and accomplish the snake 's movement and growth, you can refer to the following resources:
 Snake Game DeskÉtape
 - [How to Build a Snake Game in JavaScript](https://www.freecodecamp.org/news/how-to-build-a-snake-game-in-javascript/) - This creates a beginner 's game from scratch, allowing you to understand the movement and growth mechanics of the snake.
-- [Working with Arrays and Objects: JavaScript](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects) - This guide taught me how arrays are used correctly, and array technique has become essential for keeping track of the position of the snake 's body.
-- [The Game Loop: An In Depth Look](https://gamedevelopment.tutsplus.com/articles/the-game-loop-an-in-depth-look--gamedev-1844) - This article opens a window on game loops, an essential aspect of which is to understand how clients can be used for rendering game state.
 - [Keyboard Events](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent) - This is an extremely comprehensive account of the properties of keyboard events. When I was learning to guide the snake on its way with the guidance of user interaction this was very helpful.
-- [Collision Detection](https://www.sitepoint.com/collision-detection-javascript/) - This guide laid the framework for realistic collision detection, which is essential to determining when the snake hits the walls or itself.## 感谢
-I want to sincerely thank the following resources that greatly helped me in understanding the mechanics behind the snake game and JavaScript game development:
+
+
+# Game Obstacles: 
+The tutorial on  ([Game Obstacles](https://www.w3schools.com/graphics/game_obstacles.asp))was particularly enlightening. It explained how to create and manage obstacles within a game environment, adding an essential layer of challenge and excitement. The examples provided helped me visualize how obstacles could interact with the player and other game elements, allowing me to design levels that are not only fun but also strategically engaging.
 
  # [local storage ]
  MDN Web Docs - Using Local Storage - This documentation provided a clear explanation of how to use local storage, including examples of setting and getting items.
 JavaScript Local Storage Tutorial - This tutorial gave me a practical overview of local storage, its benefits, and how to implement it effectively in web applications.
-HTML5 Local Storage - This resource offered a concise guide to HTML5 local storage, including methods and use cases.
-These resources helped me grasp the concept of local storage and implement it effectively in my game, enhancing the overall user experience.
 
 
-- [Making Snake in JavaScript?](https://twilioresearch.freecodecamp.org/news/javascript-snake/) - This was a very introductory article that went over the basic operations of our game, including movement and growth for snake.
-- [JavaScript Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Indexed_Collections) - Ultimately, knowing how to wield the array was of utmost importance in keeping track of the snake's body segments.
-- [Game Loop Understood](https://gamedevelopment.tutsplus.com/articles/understanding-the-game-loop-in-game-development--gamedev-9602) - While I was at it, I got my first introduction to the game loop and learned the fine art of updating the game state and rendering.
+
+# Game Score Management
+The tutorial on Game Score from W3Schools provided a clear and concise overview of how to implement scoring in games. It broke down the process into manageable steps and included practical examples that I could easily adapt for my project. Understanding how to effectively manage and display scores allowed me to create a more engaging experience for players, motivating them to improve their performance.
+
+# Game Controllers
+Another fantastic resource was the Game Controllers tutorial, which offered insights into how to handle user input effectively. This guide helped me understand the different types of game controllers and how to integrate them into my game. By applying the techniques outlined in this tutorial, I was able to enhance the responsiveness of my game, making it more enjoyable for users who prefer various input methods.
+
+
 - [JavaScript for keyboard event track](https://developer.mozilla.org/en-US/docs/Web/Events/keyboard_events) - Reading through keyboard events was key in gleaning that the snake can be made to move according to user input.
 - [Collision Detection in JavaScript](https://www.sitepoint.com/series/javascript-collision-detection/) - This guide gave me the basics as to implement collision detection, so that we could determine when snake hits walls or itself.
 
 - [snake layout] (https://playsnake.org/) I got my idea from this website of a snake game and it was very helpful.
 
-# Sound Effects : 
+# Starch Goals : 
 A new band of sound effects could be created for things like nibbling on an apple ( Neither is bad ) and things like that. 
 2. ** Difficulty Levels: Adjust the speed of the snake according to different difficulty levels. 
 3. ** Mobile Optimized**: Currently there are no touch controls at all so one idea would see to develop them based on what is happening now wih the certain amount of success, for instance in modern handheld games that use screen tapping. ( by hitting red) 
