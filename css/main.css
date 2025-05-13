@@ -54,13 +54,11 @@
 
   .snake {
     background-color: black;
-    transition: transform 0.2s ease;
   }
   
 
   .apple {
     background-color: red;
-    transition: transform 0.2s ease;
   }
   
 

@@ -17,6 +17,7 @@ let gameStarted = false;
 let isPaused = false;
 let snake = [3];
 let direction = 1;
+let nextDirection = direction;
 let appleIndex = 0;
 let gameInterval;
 
@@ -67,13 +68,13 @@ function startGame() {
 
 function move() {
   const head = snake[0];
-  const newHead = head + direction;
+  const newHead = head + nextDirection;
 
   const hitWall = 
-    (direction === 1 && head % width === width - 1) || 
-    (direction === -1 && head % width === 0) || 
-    (direction === width && head >= cellblock - width) || 
-    (direction === -width && head < width);
+    (nextDirection === 1 && head % width === width - 1) || 
+    (nextDirection === -1 && head % width === 0) || 
+    (nextDirection === width && head >= cellblock - width) || 
+    (nextDirection === -width && head < width);
 
   const hitSelf = snake.includes(newHead);
 
@@ -81,6 +82,8 @@ function move() {
     gameOver();
     return;
   }
+
+  direction = nextDirection;
 
   snake.unshift(newHead);
 
@@ -138,10 +141,10 @@ function control(e) {
   }
 
   if (!isPaused) {
-    if (e.key === "ArrowRight" && direction !== -1) direction = 1;
-    else if (e.key === "ArrowLeft" && direction !== 1) direction = -1;
-    else if (e.key === "ArrowUp" && direction !== width) direction = -width;
-    else if (e.key === "ArrowDown" && direction !== -width) direction = width;
+    if (e.key === "ArrowRight" && direction !== -1) nextDirection = 1;
+    else if (e.key === "ArrowLeft" && direction !== 1) nextDirection = -1;
+    else if (e.key === "ArrowUp" && direction !== width) nextDirection = -width;
+    else if (e.key === "ArrowDown" && direction !== -width) nextDirection = width;
   }
 }
 

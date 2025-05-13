@@ -4,6 +4,12 @@
 Putting the apple fruit into the snake game (The Player controles the extending snakes by taking a bite. reach out as many gens as You can Not closed by wall or not bitten by himself. The casual and exciting gameplay has Its own score system which Awards winners;)
 
 
+## Screenshots
+[Game Screenshot] - (./imgaes)
+
+
+
+
 # Getting Started
 
 ###Live Demo
@@ -37,14 +43,9 @@ I want to sincerely thank the following resources that greatly helped me in unde
 In the development of layout, I made thorough research to understand what set of different aspects were needed so as to create a real and fun game. I studied various articles, tutorials, and documents spent the countryside for insights into game mechanics, JavaScript programming languages and well-established facts. Not only did such a carry on to help me today with my coding skills, but it all reinforced my understanding of game design principles (in fact, today at work I couldn't manage without them!)
 
 
-## Screenshots
-![Game Screenshot](path/to/screenshot.png)
-
 
 ## Author.
-Your Name  
-[Your GitHub Profile](https://github.com/yourusername)  
+Alamagan khalif
+[Your GitHub Profile](https://github.com/Alamagankhalif)  
 
 
-## License
-The project is protected under an MIT License - check the [LICENSE](LICENSE) file for details.
