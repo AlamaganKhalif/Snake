@@ -140,6 +140,7 @@ function control(e) {
     gameInterval = setInterval(move, 100);
     statusDisplay.textContent = "";
     isPaused = false;
+    
   } else if (keyState[" "] && !isPaused) {
     clearInterval(gameInterval);
     statusDisplay.textContent = "Paused";

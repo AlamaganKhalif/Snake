@@ -38,6 +38,17 @@ I want to sincerely thank the following resources that greatly helped me in unde
 - [JavaScript for keyboard event track](https://developer.mozilla.org/en-US/docs/Web/Events/keyboard_events) - Reading through keyboard events was key in gleaning that the snake can be made to move according to user input.
 - [Collision Detection in JavaScript](https://www.sitepoint.com/series/javascript-collision-detection/) - This guide gave me the basics as to implement collision detection, so that we could determine when snake hits walls or itself.
 
+# Sound Effects : 
+A new band of sound effects could be created for things like nibbling on an apple ( Neither is bad ) and things like that. 
+2. ** Difficulty Levels: Adjust the speed of the snake according to different difficulty levels. 
+3. ** Mobile Optimized**: Currently there are no touch controls at all so one idea would see to develop them based on what is happening now wih the certain amount of success, for instance in modern handheld games that use screen tapping. ( by hitting red) 
+4. ** Personalized Snake **: You could select a snake's color or appearance that fits your mood. 
+5. ** Leaderboards **: Now you can compare your high scores with friends from around the world. 
+8. ** Obstacles **: Add obstacles to the gaming field in this test version of things. 
+9. ** Record Current Points **: At present, moving away from the game loses your current score; this ought to be changed9, record current points. 
+10. ** Other Modes **: For example, a timed mode could be added so that players would have to hit a certain number of pieces in the available time.
+
+
 
 ### Research Progress
 In the development of layout, I made thorough research to understand what set of different aspects were needed so as to create a real and fun game. I studied various articles, tutorials, and documents spent the countryside for insights into game mechanics, JavaScript programming languages and well-established facts. Not only did such a carry on to help me today with my coding skills, but it all reinforced my understanding of game design principles (in fact, today at work I couldn't manage without them!)
