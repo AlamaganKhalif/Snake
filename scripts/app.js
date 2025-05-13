@@ -20,7 +20,6 @@ let direction = 1;
 let appleIndex = 0;
 let gameInterval;
 
-// Create grid
 function createGrid() {
   for (let i = 0; i < cellblock; i++) {
     const cell = document.createElement("div");
@@ -29,7 +28,6 @@ function createGrid() {
   }
 }
 
-// Countdown before game starts
 function countdown(callback) {
   let count = 3;
   countdownDisplay.textContent = count;
@@ -46,20 +44,19 @@ function countdown(callback) {
   }, 1000);
 }
 
-// Start or restart the game
 function startGame() {
-  snake.forEach(i => cells[i].classList.remove("snake", "apple"));
+  snake.forEach(i => cells[i].classList.remove("snake"));
   cells[appleIndex]?.classList.remove("apple");
   clearInterval(gameInterval);
 
-  snake = [0];
+  snake = [3];
   direction = 1;
   score = 0;
   isPaused = false;
   gameStarted = true;
 
   gameOverMessage.style.display = "none";
-  userScore.textContent = `Score ${score}`;
+  userScore.textContent = `Score: ${score}`;
   bestScoreDisplay.textContent = `Best Score: ${bestScore}`;
 
   generateApple();
@@ -68,57 +65,43 @@ function startGame() {
   gameInterval = setInterval(move, 100);
 }
 
-// Game logic loop
 function move() {
   const head = snake[0];
-
-  if (
-    (direction === 1 && head % width === width - 1) || // right wall
-    (direction === -1 && head % width === 0) || // left wall
-    (direction === width && head >= cellblock - width) || // bottom wall
-    (direction === -width && head < width) || // top wall
-    cells[head + direction]?.classList.contains("snake") // self collision
-  ) {
-    gameOver();
-    return;
-  }
-
-  const tail = snake.pop();
-  cells[tail].classList.remove("snake");
-
   const newHead = head + direction;
 
-  // Prevent wrapping (horizontal boundary checks)
-  if (
-    newHead < 0 || newHead >= cellblock ||
-    (direction === 1 && newHead % width === 0) ||
-    (direction === -1 && newHead % width === width - 1)
-  ) {
+  const hitWall = 
+    (direction === 1 && head % width === width - 1) || 
+    (direction === -1 && head % width === 0) || 
+    (direction === width && head >= cellblock - width) || 
+    (direction === -width && head < width);
+
+  const hitSelf = snake.includes(newHead);
+
+  if (hitWall || hitSelf) {
     gameOver();
     return;
   }
 
   snake.unshift(newHead);
 
-  // Eat apple
   if (newHead === appleIndex) {
     cells[appleIndex].classList.remove("apple");
-    snake.push(tail);
     score++;
-    userScore.textContent = `Score ${score}`;
+    userScore.textContent = `Score: ${score}`;
     generateApple();
-
-    if (snake.length === cellblock) {
-      statusDisplay.textContent = "You Win!";
-      clearInterval(gameInterval);
-      return;
-    }
+  } else {
+    const tail = snake.pop();
+    cells[tail].classList.remove("snake");
   }
 
   cells[newHead].classList.add("snake");
+
+  if (snake.length === cellblock) {
+    statusDisplay.textContent = "You Win!";
+    clearInterval(gameInterval);
+  }
 }
 
-// End game logic
 function gameOver() {
   gameOverMessage.textContent = "Game Over";
   gameOverMessage.style.display = "block";
@@ -132,7 +115,6 @@ function gameOver() {
   }
 }
 
-// Generate apple not on the snake
 function generateApple() {
   do {
     appleIndex = Math.floor(Math.random() * cellblock);
@@ -140,13 +122,12 @@ function generateApple() {
   cells[appleIndex].classList.add("apple");
 }
 
-// Keyboard controls
 function control(e) {
   if (!gameStarted) return;
 
   if (e.key === " ") {
     if (isPaused) {
-      gameInterval = setInterval(move, 150);
+      gameInterval = setInterval(move, 100);
       statusDisplay.textContent = "";
     } else {
       clearInterval(gameInterval);
@@ -164,7 +145,7 @@ function control(e) {
   }
 }
 
-// Event listeners
+
 startButton.addEventListener("click", () => {
   if (!gameStarted) {
     titleOverGrid.style.display = "none";
@@ -183,7 +164,9 @@ grid.addEventListener("click", () => {
 
 document.addEventListener("keydown", control);
 
-// Init
 createGrid();
 bestScoreDisplay.textContent = `Best Score: ${bestScore}`;
+
+
+
 
