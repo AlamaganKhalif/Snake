@@ -48,24 +48,27 @@ function countdown(callback) {
 }
 
 function startGame() {
+  clearInterval(gameInterval); 
+  Object.keys(keyState).forEach(k => keyState[k] = false); 
   clearGrid();
-  snake = [0]; // Initialize snake at the starting position
-  direction = 1; // Initial direction
-  nextDirection = direction; // Set next direction to initial direction
-  score = 0; // Reset score
-  isPaused = false; // Ensure game is not paused
-  gameStarted = true; // Mark game as started
+
+  snake = [0];
+  direction = 1;
+  nextDirection = direction;
+  score = 0;
+  isPaused = false;
+  gameStarted = true;
 
   gameOverMessage.style.display = "none";
   userScore.textContent = `Score: ${score}`;
   bestScoreDisplay.textContent = `Best Score: ${bestScore}`;
+  statusDisplay.textContent = "";
 
   generateApple();
   snake.forEach(i => cells[i].classList.add("snake"));
 
-  // Start the game loop after a brief delay
   setTimeout(() => {
-    gameInterval = setInterval(move, 100); // Start moving the snake
+    gameInterval = setInterval(move, 100);
   }, 100);
 }
 
@@ -73,10 +76,10 @@ function move() {
   const head = snake[0];
   const newHead = head + nextDirection;
 
-  const hitWall = 
-    (nextDirection === 1 && head % width === width - 1) || 
-    (nextDirection === -1 && head % width === 0) || 
-    (nextDirection === width && head >= cellblock - width) || 
+  const hitWall =
+    (nextDirection === 1 && head % width === width - 1) ||
+    (nextDirection === -1 && head % width === 0) ||
+    (nextDirection === width && head >= cellblock - width) ||
     (nextDirection === -width && head < width);
 
   const hitSelf = snake.includes(newHead);
@@ -112,7 +115,9 @@ function gameOver() {
   gameOverMessage.textContent = "Game Over";
   gameOverMessage.style.display = "block";
   clearInterval(gameInterval);
-  gameStarted = false; // Mark game as not started
+  gameStarted = false;
+  isPaused = false;
+  Object.keys(keyState).forEach(k => keyState[k] = false); // Clear key state
 
   if (score > bestScore) {
     bestScore = score;
@@ -136,26 +141,29 @@ function clearGrid() {
 }
 
 function control(e) {
-  if (!gameStarted) return; // Prevent control when the game is not started
+  if (!gameStarted) return;
 
+  if (e.type === 'keydown' && keyState[e.key]) return;
   keyState[e.key] = e.type === 'keydown';
 
-  if (keyState[" "] && isPaused) {
-    gameInterval = setInterval(move, 100);
-    statusDisplay.textContent = "";
-    isPaused = false;
-
-  } else if (keyState[" "] && !isPaused) {
-    clearInterval(gameInterval);
-    statusDisplay.textContent = "Paused";
-    isPaused = true;
+  if (e.key === " " && e.type === 'keydown') {
+    if (isPaused) {
+      gameInterval = setInterval(move, 100);
+      statusDisplay.textContent = "";
+      isPaused = false;
+    } else {
+      clearInterval(gameInterval);
+      statusDisplay.textContent = "Paused";
+      isPaused = true;
+    }
+    return;
   }
 
-  if (!isPaused) {
-    if (keyState["ArrowRight"] && direction !== -1) nextDirection = 1;
-    else if (keyState["ArrowLeft"] && direction !== 1) nextDirection = -1;
-    else if (keyState["ArrowUp"] && direction !== width) nextDirection = -width;
-    else if (keyState["ArrowDown"] && direction !== -width) nextDirection = width;
+  if (!isPaused && e.type === 'keydown') {
+    if (e.key === "ArrowRight" && direction !== -1) nextDirection = 1;
+    else if (e.key === "ArrowLeft" && direction !== 1) nextDirection = -1;
+    else if (e.key === "ArrowUp" && direction !== width) nextDirection = -width;
+    else if (e.key === "ArrowDown" && direction !== -width) nextDirection = width;
   }
 }
 
@@ -180,6 +188,7 @@ grid.addEventListener("click", () => {
 
 createGrid();
 bestScoreDisplay.textContent = `Best Score: ${bestScore}`;
+
 
 
 
