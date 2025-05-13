@@ -21,6 +21,8 @@ let nextDirection = direction;
 let appleIndex = 0;
 let gameInterval;
 
+const keyState = {};
+
 function createGrid() {
   for (let i = 0; i < cellblock; i++) {
     const cell = document.createElement("div");
@@ -28,6 +30,8 @@ function createGrid() {
     grid.appendChild(cell);
   }
 }
+
+
 
 function countdown(callback) {
   let count = 3;
@@ -44,6 +48,8 @@ function countdown(callback) {
     }
   }, 1000);
 }
+
+
 
 function startGame() {
   snake.forEach(i => cells[i].classList.remove("snake"));
@@ -128,26 +134,28 @@ function generateApple() {
 function control(e) {
   if (!gameStarted) return;
 
-  if (e.key === " ") {
-    if (isPaused) {
-      gameInterval = setInterval(move, 100);
-      statusDisplay.textContent = "";
-    } else {
-      clearInterval(gameInterval);
-      statusDisplay.textContent = "Paused";
-    }
-    isPaused = !isPaused;
-    return;
+  keyState[e.key] = e.type === 'keydown';
+
+  if (keyState[" "] && isPaused) {
+    gameInterval = setInterval(move, 100);
+    statusDisplay.textContent = "";
+    isPaused = false;
+  } else if (keyState[" "] && !isPaused) {
+    clearInterval(gameInterval);
+    statusDisplay.textContent = "Paused";
+    isPaused = true;
   }
 
   if (!isPaused) {
-    if (e.key === "ArrowRight" && direction !== -1) nextDirection = 1;
-    else if (e.key === "ArrowLeft" && direction !== 1) nextDirection = -1;
-    else if (e.key === "ArrowUp" && direction !== width) nextDirection = -width;
-    else if (e.key === "ArrowDown" && direction !== -width) nextDirection = width;
+    if (keyState["ArrowRight"] && direction !== -1) nextDirection = 1;
+    else if (keyState["ArrowLeft"] && direction !== 1) nextDirection = -1;
+    else if (keyState["ArrowUp"] && direction !== width) nextDirection = -width;
+    else if (keyState["ArrowDown"] && direction !== -width) nextDirection = width;
   }
 }
 
+document.addEventListener("keydown", control);
+document.addEventListener("keyup", control);
 
 startButton.addEventListener("click", () => {
   if (!gameStarted) {
@@ -157,18 +165,21 @@ startButton.addEventListener("click", () => {
   }
 });
 
+
 grid.addEventListener("click", () => {
   if (!gameStarted) {
     titleOverGrid.style.display = "none";
     startButton.style.display = "none";
     countdown(startGame);
   }
-});
+})
 
-document.addEventListener("keydown", control);
+
+
 
 createGrid();
 bestScoreDisplay.textContent = `Best Score: ${bestScore}`;
+
 
 
 
