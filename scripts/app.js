@@ -15,7 +15,7 @@ let score = 0;
 let bestScore = localStorage.getItem("best-score") || 0;
 let gameStarted = false;
 let isPaused = false;
-let snake = [3];
+let snake = [0];
 let direction = 1;
 let nextDirection = direction;
 let appleIndex = 0;
@@ -56,7 +56,7 @@ function startGame() {
   cells[appleIndex]?.classList.remove("apple");
   clearInterval(gameInterval);
 
-  snake = [3];
+  snake = [0];
   direction = 1;
   score = 0;
   isPaused = false;
@@ -140,7 +140,7 @@ function control(e) {
     gameInterval = setInterval(move, 100);
     statusDisplay.textContent = "";
     isPaused = false;
-    
+
   } else if (keyState[" "] && !isPaused) {
     clearInterval(gameInterval);
     statusDisplay.textContent = "Paused";

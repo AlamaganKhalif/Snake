@@ -5,7 +5,7 @@ Putting the apple fruit into the snake game (The Player controles the extending 
 
 
 ## Screenshots
-[Game Screenshot] - (./imgaes)
+[Game Screenshot] - (<img width="1289" alt="Image" src="https://github.com/user-attachments/assets/53976fea-28fd-4f94-81f4-949fac1cf0d7" />)
 
 
 
@@ -32,11 +32,20 @@ Snake Game DeskÉtape
 - [Collision Detection](https://www.sitepoint.com/collision-detection-javascript/) - This guide laid the framework for realistic collision detection, which is essential to determining when the snake hits the walls or itself.## 感谢
 I want to sincerely thank the following resources that greatly helped me in understanding the mechanics behind the snake game and JavaScript game development:
 
+ # [local storage ]
+ MDN Web Docs - Using Local Storage - This documentation provided a clear explanation of how to use local storage, including examples of setting and getting items.
+JavaScript Local Storage Tutorial - This tutorial gave me a practical overview of local storage, its benefits, and how to implement it effectively in web applications.
+HTML5 Local Storage - This resource offered a concise guide to HTML5 local storage, including methods and use cases.
+These resources helped me grasp the concept of local storage and implement it effectively in my game, enhancing the overall user experience.
+
+
 - [Making Snake in JavaScript?](https://twilioresearch.freecodecamp.org/news/javascript-snake/) - This was a very introductory article that went over the basic operations of our game, including movement and growth for snake.
 - [JavaScript Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Indexed_Collections) - Ultimately, knowing how to wield the array was of utmost importance in keeping track of the snake's body segments.
 - [Game Loop Understood](https://gamedevelopment.tutsplus.com/articles/understanding-the-game-loop-in-game-development--gamedev-9602) - While I was at it, I got my first introduction to the game loop and learned the fine art of updating the game state and rendering.
 - [JavaScript for keyboard event track](https://developer.mozilla.org/en-US/docs/Web/Events/keyboard_events) - Reading through keyboard events was key in gleaning that the snake can be made to move according to user input.
 - [Collision Detection in JavaScript](https://www.sitepoint.com/series/javascript-collision-detection/) - This guide gave me the basics as to implement collision detection, so that we could determine when snake hits walls or itself.
+
+- [snake layout] (https://playsnake.org/) I got my idea from this website of a snake game and it was very helpful.
 
 # Sound Effects : 
 A new band of sound effects could be created for things like nibbling on an apple ( Neither is bad ) and things like that. 
